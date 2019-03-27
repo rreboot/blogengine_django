@@ -7,15 +7,15 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 't)2*@h&c3il--%r&^vqhq(a1wj$1n%^h^ay897gc#ef1+%gx^n'
+SECRET_KEY = 't)2*@h&c3il--%r&^vqhq(a1wj$1n%^h^ay897gc#ef1+%gx^n'
 
-SECRET_KEY = os.environ['SK', 't)2*@h&c3il--%r&^vqhq(a1wj$1n%^h^ay897gc#ef1+%gx^n']
+# SECRET_KEY = os.environ.get(['SK', 't)2*@h&c3il--%r&^vqhq(a1wj$1n%^h^ay897gc#ef1+%gx^n'])
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
+DEBUG = True
+# DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -65,8 +65,12 @@ WSGI_APPLICATION = 'blogengine.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'mydb',
+        'USER': 'renat',
+        'PASSWORD': '=reboot=',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
@@ -108,3 +112,4 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
+STATIC_ROOT = '/static/'
